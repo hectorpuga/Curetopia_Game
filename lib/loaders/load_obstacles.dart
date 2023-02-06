@@ -1,0 +1,17 @@
+import 'package:flame/components.dart';
+import 'package:flame_tiled/flame_tiled.dart';
+import 'package:george/character/obstacle_component.dart';
+
+import '../my_george_game.dart';
+
+void loadObstacles(TiledComponent homeMap, MyGame game) {
+  final obstaclesGroup = homeMap.tileMap.getLayer<ObjectGroup>("Obstacles");
+
+  for (var obstaclesBox in obstaclesGroup!.objects) {
+    game.add(ObstacleComponent()
+      ..position = Vector2(obstaclesBox.x, obstaclesBox.y)
+      ..width = obstaclesBox.width
+      ..height = obstaclesBox.height
+      ..debugMode = true);
+  }
+}
