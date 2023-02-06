@@ -40,7 +40,7 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   late double mapHeight;
   // Numero de amigos que tiene el personaje
 
-  late DialogBox dialogBox;
+  // late DialogBox dialogBox;
 
   late AudioPool yummy;
   late AudioPool applause;
@@ -63,12 +63,12 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     loadFriends(homeMap, this);
     loadObstacles(homeMap, this);
 
-    dialogBox = DialogBox(
-      game: this,
-      text: "Hi. I am George. I have just"
-          "moved to Happy Bay Village"
-          "I want to make friends.",
-    );
+    // dialogBox = DialogBox(
+    //   game: this,
+    //   text: "Hi. I am George. I have just"
+    //       "moved to Happy Bay Village"
+    //       "I want to make friends.",
+    // );
 
     yummy = await AudioPool.create("audio/sfx/yummy.mp3", maxPlayers: 1);
     applause = await AudioPool.create("audio/sfx/applause.mp3", maxPlayers: 2);
@@ -90,7 +90,7 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     // Creación de camara la cual seguira a nuestro personaje y a dicha camara se le da una restricción hasta donde puede seguir al personaje
     camera.followComponent(george,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
-    add(dialogBox);
+    // add(dialogBox);
 
     final knobPaint = BasicPalette.blue.withAlpha(200).paint();
     final backgroundPaint = BasicPalette.blue.withAlpha(100).paint();

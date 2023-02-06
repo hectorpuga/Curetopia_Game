@@ -25,21 +25,25 @@ class FriendComponent extends PositionComponent
       if (gameRef.gameProvider.bakedGoodsInventory > 0) {
         gameRef.gameProvider.friends++;
         gameRef.applause.start();
-        text = "Wow. Thanks so much. Please come over"
+        game.gameProvider.dialogMessage =
+            "Wow. Thanks so much. Please come over"
             "this weekend for dinner. I have to run now."
             "See you on Saturday at 7pm";
         gameRef.gameProvider.bakedGoodsInventory--;
+        game.gameProvider.showDialog = true;
+        // gameRef.dialogBox = DialogBox(game: gameRef, text: text);
 
-        gameRef.dialogBox = DialogBox(game: gameRef, text: text);
-
-        gameRef.add(gameRef.dialogBox);
+        // gameRef.add(gameRef.dialogBox);
       } else {
-        text = "Great to meet you.Sorry, I have to run to a meeting.";
-        gameRef.dialogBox = DialogBox(game: gameRef, text: text);
-        gameRef.add(gameRef.dialogBox);
+        game.gameProvider.dialogMessage =
+            "Great to meet you.Sorry, I have to run to a meeting.";
+        game.gameProvider.showDialog = true;
+        print("Entre pero no me mostres ");
+
+        // gameRef.dialogBox = DialogBox(game: gameRef, text: text);
+        // gameRef.add(gameRef.dialogBox);
       }
       gameRef.remove(this);
     }
-    print("collision ");
   }
 }

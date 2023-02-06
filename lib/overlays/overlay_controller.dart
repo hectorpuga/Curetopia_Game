@@ -1,10 +1,11 @@
-import 'package:flame_audio/flame_audio.dart';
+import 'package:george/overlays/score_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:george/provider/game_provider.dart';
 
 import '../my_george_game.dart';
 import 'audio_overlay.dart';
+import 'dialog_overlay.dart';
 
 class OverlayController extends StatelessWidget {
   final MyGame game;
@@ -21,41 +22,12 @@ class OverlayController extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: Row(
             children: [
-              Container(
-                color: const Color.fromARGB(167, 218, 218, 218),
-                child: Image.asset(
-                  "assets/images/friend.png",
-                  scale: 0.7,
-                ),
-              ),
-              const SizedBox(
-                width: 12,
-              ),
-              Container(
-                  color: const Color.fromARGB(167, 218, 218, 218),
-                  child: Text(
-                    "${gameProvider.friends}",
-                    style: const TextStyle(fontSize: 28, color: Colors.black45),
-                  )),
-              const SizedBox(
-                width: 12,
-              ),
-              Container(
-                color: const Color.fromARGB(167, 218, 218, 218),
-                child: Image.asset(
-                  "assets/images/choco_cake.png",
-                  scale: 0.8,
-                ),
-              ),
-              const SizedBox(
-                width: 12,
-              ),
-              Container(
-                  color: const Color.fromARGB(167, 218, 218, 218),
-                  child: Text(
-                    "${gameProvider.bakedGoodsInventory}",
-                    style: const TextStyle(fontSize: 28, color: Colors.black45),
-                  )),
+              Expanded(flex: 2, child: ScoreOver(gameProvider: gameProvider)),
+              Expanded(
+                  flex: 2,
+                  child: DialogOverlay(
+                    game: game,
+                  ))
             ],
           ),
         )
