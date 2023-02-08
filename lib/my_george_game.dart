@@ -13,6 +13,7 @@ import 'character/george_component.dart';
 import 'dialog/dialog_box.dart';
 import 'loaders/add_baked_goods.dart';
 import 'loaders/load_friends.dart';
+import 'loaders/load_gems.dart';
 import 'loaders/load_obstacles.dart';
 
 class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
@@ -23,7 +24,15 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
 
   // late SpriteComponent background;
 
-  late final JoystickComponent joystick;
+  late JoystickComponent joystick;
+
+  int sceneNumber = 1;
+  late TiledComponent homeMap;
+  int maxFriends = 0;
+
+  List<Component> componentList = [];
+
+  int gemInventory = 0;
 
   // 0=idle, 1=down, 2=left, 3=up, 4=right
   List collisionDirection = [];
@@ -51,7 +60,7 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    final homeMap = await TiledComponent.load("map.tmx", Vector2.all(16));
+    homeMap = await TiledComponent.load("map.tmx", Vector2.all(16));
     add(homeMap);
 
     george = GeorgeComponent();
@@ -62,13 +71,6 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     addBakedGoods(homeMap, this);
     loadFriends(homeMap, this);
     loadObstacles(homeMap, this);
-
-    // dialogBox = DialogBox(
-    //   game: this,
-    //   text: "Hi. I am George. I have just"
-    //       "moved to Happy Bay Village"
-    //       "I want to make friends.",
-    // );
 
     yummy = await AudioPool.create("audio/sfx/yummy.mp3", maxPlayers: 1);
     applause = await AudioPool.create("audio/sfx/applause.mp3", maxPlayers: 2);
@@ -105,6 +107,63 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   // Metodo de actualizción que se ejecuta infinitamente al ser ejecutado el juego
 
   // Metodo sobreescribido del TapDetector para asi poder incorporar nuevas instrucciones al ser ejecutado
+
+  void newScene() async {
+    print("change to a new scene");
+    String mapFile = "happy_map.tmx";
+    homeMap.removeFromParent();
+    gameProvider.bakedGoodsInventory = 0;
+    gameProvider.friends = 0;
+    maxFriends = 0;
+    // FlameAudio.bgm.stop();
+    for (var component in componentList) {
+      component.removeFromParent();
+    }
+    componentList = [];
+
+    gameProvider.showDialog = false;
+    remove(george);
+
+    remove(joystick);
+
+    if (sceneNumber == 2) {
+      print('moving to map2');
+    } else if (sceneNumber == 3) {
+      print('moving to scene 3');
+      mapFile = 'scene3.tmx';
+    } else if (sceneNumber == 4) {
+      print('moving to scene 4');
+      mapFile = 'scene4.tmx';
+    }
+
+    homeMap = await TiledComponent.load(mapFile, Vector2.all(16));
+    add(homeMap);
+
+    mapWidth = homeMap.size.x;
+    mapHeight = homeMap.size.y;
+    addBakedGoods(homeMap, this);
+    loadFriends(homeMap, this);
+    loadObstacles(homeMap, this);
+    if (sceneNumber == 4) {
+      loadGems(homeMap, this);
+    }
+
+    george = GeorgeComponent();
+
+    add(george);
+
+    camera.followComponent(george,
+        worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
+
+    final knobPaint = BasicPalette.blue.withAlpha(200).paint();
+    final backgroundPaint = BasicPalette.blue.withAlpha(100).paint();
+
+    joystick = JoystickComponent(
+        knob: CircleComponent(radius: 30, paint: knobPaint),
+        background: CircleComponent(radius: 50, paint: backgroundPaint),
+        margin: const EdgeInsets.only(left: 40, bottom: 30));
+    add(joystick);
+  }
 
   @override
   Color backgroundColor() => Colors.pink;

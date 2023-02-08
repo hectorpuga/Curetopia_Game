@@ -8,10 +8,13 @@ void loadFriends(TiledComponent homeMap, MyGame game) {
   final friendGroup = homeMap.tileMap.getLayer<ObjectGroup>("Friends");
 
   for (var friendBox in friendGroup!.objects) {
-    game.add(FriendComponent()
+    var friend = FriendComponent()
       ..position = Vector2(friendBox.x, friendBox.y)
       ..width = friendBox.width
       ..height = friendBox.height
-      ..debugMode = true);
+      ..debugMode = true;
+    game.componentList.add(friend);
+    game.maxFriends++;
+    game.add(friend);
   }
 }

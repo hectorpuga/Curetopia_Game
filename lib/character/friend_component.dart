@@ -34,6 +34,11 @@ class FriendComponent extends PositionComponent
         // gameRef.dialogBox = DialogBox(game: gameRef, text: text);
 
         // gameRef.add(gameRef.dialogBox);
+
+        if (game.maxFriends == gameRef.gameProvider.friends) {
+          gameRef.sceneNumber++;
+          gameRef.newScene();
+        }
       } else {
         game.gameProvider.dialogMessage =
             "Great to meet you.Sorry, I have to run to a meeting.";
