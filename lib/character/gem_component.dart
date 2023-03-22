@@ -1,9 +1,8 @@
+import 'package:Game/character/player_component.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:george/character/george_component.dart';
-import 'package:george/dialog/dialog_box.dart';
 
-import '../my_george_game.dart';
+import '../my_game.dart';
 
 // Clase para crear un cuadro de contorno al rededor de los graficos de amigos
 class GemComponent extends SpriteComponent
@@ -16,7 +15,7 @@ class GemComponent extends SpriteComponent
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is GeorgeComponent) {
+    if (other is PlayerComponent) {
       game.gemInventory++;
       game.applause.start();
     }

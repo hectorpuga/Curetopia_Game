@@ -1,9 +1,9 @@
-import 'package:george/overlays/score_overlay.dart';
+import 'package:Game/overlays/score_overlay.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:george/provider/game_provider.dart';
 
-import '../my_george_game.dart';
+import '../my_game.dart';
+import '../provider/game_provider.dart';
 import 'audio_overlay.dart';
 import 'dialog_overlay.dart';
 

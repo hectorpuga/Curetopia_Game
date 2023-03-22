@@ -3,9 +3,9 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/sprite.dart';
 
-import '../my_george_game.dart';
+import '../my_game.dart';
 
-class GeorgeComponent extends SpriteAnimationComponent
+class PlayerComponent extends SpriteAnimationComponent
     with CollisionCallbacks, HasGameRef<MyGame> {
   // Animación del personaje caminando hacia abajo
   late SpriteAnimation downAnimation;
@@ -22,8 +22,7 @@ class GeorgeComponent extends SpriteAnimationComponent
     super.onLoad();
     // Instancia para craeación del spritesheet el cual contendra las animaciónes
     final spriteSheet = SpriteSheet(
-        image: await gameRef.images.load("george2.png"),
-        srcSize: Vector2(48, 48));
+        image: await gameRef.images.load("Ash.png"), srcSize: Vector2(48, 48));
     // Instanciaciones para la creción de las animaciónes
     downAnimation = spriteSheet.createAnimation(
         row: 0, stepTime: gameRef.animationSpeed, to: 4);
@@ -99,7 +98,7 @@ class GeorgeComponent extends SpriteAnimationComponent
 
   @override
   void onCollisionEnd(PositionComponent other) {
-    print("george");
+    print("player");
     // TODO: implement onCollisionEnd
     super.onCollisionEnd(other);
 

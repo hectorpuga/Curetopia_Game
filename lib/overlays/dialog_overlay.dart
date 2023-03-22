@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:george/my_george_game.dart';
+
 import 'package:provider/provider.dart';
 
+import '../my_game.dart';
 import '../provider/game_provider.dart';
 
 class DialogOverlay extends StatelessWidget {

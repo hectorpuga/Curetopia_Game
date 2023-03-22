@@ -1,7 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '../my_george_game.dart';
+import '../my_game.dart';
 
 // Clase para crear un cuadro de contorno al rededor de los graficos de amigos
 class ObstacleComponent extends PositionComponent
@@ -26,8 +26,8 @@ class ObstacleComponent extends PositionComponent
   @override
   void onCollisionEnd(PositionComponent other) {
     print("obstacle");
-    print(gameRef.george.activeCollisions.isEmpty);
-    print(gameRef.george.activeCollisions);
+    print(gameRef.player.activeCollisions.isEmpty);
+    print(gameRef.player.activeCollisions);
 
     super.onCollisionEnd(other);
 

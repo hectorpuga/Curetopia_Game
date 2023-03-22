@@ -1,9 +1,8 @@
+import 'package:Game/character/player_component.dart';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:george/character/george_component.dart';
-import 'package:george/dialog/dialog_box.dart';
 
-import '../my_george_game.dart';
+import '../my_game.dart';
 
 // Clase para crear un cuadro de contorno al rededor de los graficos de amigos
 class FriendComponent extends PositionComponent
@@ -21,7 +20,7 @@ class FriendComponent extends PositionComponent
     // TODO: implement onCollision
     super.onCollision(intersectionPoints, other);
 
-    if (other is GeorgeComponent) {
+    if (other is PlayerComponent) {
       if (gameRef.gameProvider.bakedGoodsInventory > 0) {
         gameRef.gameProvider.friends++;
         gameRef.applause.start();

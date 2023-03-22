@@ -1,11 +1,12 @@
+import 'package:Game/provider/game_provider.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:george/overlays/overlay_controller.dart';
-import 'package:george/provider/game_provider.dart';
+
 import 'package:provider/provider.dart';
 
-import 'my_george_game.dart';
+import 'my_game.dart';
+import 'overlays/overlay_controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

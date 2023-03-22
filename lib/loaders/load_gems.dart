@@ -2,7 +2,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
 import '../character/gem_component.dart';
-import '../my_george_game.dart';
+import '../my_game.dart';
 
 void loadGems(TiledComponent homeMap, MyGame game) async {
   final gemGroup = homeMap.tileMap.getLayer<ObjectGroup>('Gems');

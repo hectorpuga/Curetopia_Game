@@ -5,7 +5,7 @@ class GameProvider extends ChangeNotifier {
   bool _showDialog = true;
 
   int _bakedGoodsInventory = 0;
-  String _dialogMessage = "Hi. I am George. I have just"
+  String _dialogMessage = "Hi. I am player. I have just"
       "moved to Happy Bay Village"
       "I want to make friends.";
 

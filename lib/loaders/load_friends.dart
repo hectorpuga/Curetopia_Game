@@ -1,8 +1,8 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:george/character/friend_component.dart';
 
-import '../my_george_game.dart';
+import '../character/friend_component.dart';
+import '../my_game.dart';
 
 void loadFriends(TiledComponent homeMap, MyGame game) {
   final friendGroup = homeMap.tileMap.getLayer<ObjectGroup>("Friends");

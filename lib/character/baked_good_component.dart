@@ -1,7 +1,7 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
-import '../my_george_game.dart';
+import '../my_game.dart';
 
 class BakedGoodComponent extends SpriteComponent
     with HasGameRef<MyGame>, CollisionCallbacks {

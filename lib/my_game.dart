@@ -1,16 +1,12 @@
-import 'dart:ui';
-
+import 'package:Game/provider/game_provider.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_audio/audio_pool.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:george/provider/game_provider.dart';
 
-import 'character/george_component.dart';
-import 'dialog/dialog_box.dart';
+import 'character/player_component.dart';
 import 'loaders/add_baked_goods.dart';
 import 'loaders/load_friends.dart';
 import 'loaders/load_gems.dart';
@@ -18,7 +14,7 @@ import 'loaders/load_obstacles.dart';
 
 class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   // Variable para la creación del personaje
-  late GeorgeComponent george;
+  late PlayerComponent player;
   // Nombre de el sonido de musica del fondo
   String soundTrackName = 'ukulele';
 
@@ -63,8 +59,8 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     homeMap = await TiledComponent.load("map.tmx", Vector2.all(16));
     add(homeMap);
 
-    george = GeorgeComponent();
-    add(george);
+    player = PlayerComponent();
+    add(player);
 
     mapWidth = homeMap.size.x;
     mapHeight = homeMap.size.y;
@@ -90,7 +86,7 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     // FlameAudio.bgm.play("music.mp3");
 
     // Creación de camara la cual seguira a nuestro personaje y a dicha camara se le da una restricción hasta donde puede seguir al personaje
-    camera.followComponent(george,
+    camera.followComponent(player,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
     // add(dialogBox);
 
@@ -122,7 +118,7 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     componentList = [];
 
     gameProvider.showDialog = false;
-    remove(george);
+    remove(player);
 
     remove(joystick);
 
@@ -148,11 +144,11 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
       loadGems(homeMap, this);
     }
 
-    george = GeorgeComponent();
+    player = PlayerComponent();
 
-    add(george);
+    add(player);
 
-    camera.followComponent(george,
+    camera.followComponent(player,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
 
     final knobPaint = BasicPalette.blue.withAlpha(200).paint();

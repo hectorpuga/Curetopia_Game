@@ -1,8 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import 'package:george/character/obstacle_component.dart';
-
-import '../my_george_game.dart';
+import '../character/obstacle_component.dart';
+import '../my_game.dart';
 
 void loadObstacles(TiledComponent homeMap, MyGame game) {
   final obstaclesGroup = homeMap.tileMap.getLayer<ObjectGroup>("Obstacles");
