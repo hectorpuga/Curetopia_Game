@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../provider/game_provider.dart';
+import '../../provider/game_provider.dart';
 
 class ScoreOver extends StatelessWidget {
   const ScoreOver({

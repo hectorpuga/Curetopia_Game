@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-import '../character/friend_component.dart';
+import '../characters/secundarios.dart';
 import '../my_game.dart';
 
 void loadFriends(TiledComponent homeMap, MyGame game) {

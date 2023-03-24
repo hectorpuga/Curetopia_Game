@@ -1,6 +1,6 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
-import '../character/obstacle_component.dart';
+import '../articles/obstacle_component.dart';
 import '../my_game.dart';
 
 void loadObstacles(TiledComponent homeMap, MyGame game) {

@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
-import 'my_game.dart';
-import 'overlays/overlay_controller.dart';
+import 'game/my_game.dart';
+import 'game/overlays/overlay_controller.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,0 +1,10 @@
+export 'animations/player.dart';
+export 'characters/player.dart';
+export 'components/components.dart';
+export 'loaders/loaders.dart';
+export 'package:flame_audio/audio_pool.dart';
+export 'package:flame_tiled/flame_tiled.dart';
+export 'package:flame/components.dart';
+export 'package:flame/game.dart';
+export 'package:flame/palette.dart';
+export 'package:Game/provider/game_provider.dart';

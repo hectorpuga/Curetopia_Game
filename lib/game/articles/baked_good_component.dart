@@ -17,9 +17,5 @@ class BakedGoodComponent extends SpriteComponent
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
     // TODO: implement onCollision
     super.onCollision(intersectionPoints, other);
-    gameRef.gameProvider.bakedGoodsInventory++;
-    print("baked goods inve");
-    gameRef.yummy.start();
-    gameRef.remove(this);
   }
 }

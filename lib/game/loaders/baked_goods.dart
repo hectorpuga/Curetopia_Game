@@ -1,7 +1,7 @@
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 
-import '../character/baked_good_component.dart';
+import '../articles/baked_good_component.dart';
 import '../my_game.dart';
 
 void addBakedGoods(TiledComponent homeMap, MyGame game) async {

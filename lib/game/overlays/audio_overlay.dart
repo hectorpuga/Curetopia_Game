@@ -1,5 +1,4 @@
 import 'package:flame_audio/flame_audio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AudioOverlay extends StatelessWidget {
@@ -29,10 +28,6 @@ class AudioOverlay extends StatelessWidget {
               },
               icon: const Icon(Icons.volume_off_rounded)),
         ),
-        // Text(
-        //   game.soundTrackName,
-        //   style: TextStyle(color: Colors.pink.shade200, fontSize: 20),
-        // ),
       ],
     );
   }
