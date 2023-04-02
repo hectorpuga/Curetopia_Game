@@ -29,9 +29,20 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
 
   @override
   void onCollisionStart(
-      Set<Vector2> intersectionPoints, PositionComponent other) {
-    // TODO: implement onCollisionStart
+    Set<Vector2> intersectionPoints,
+    PositionComponent other,
+  ) {
     super.onCollisionStart(intersectionPoints, other);
+
+    if (activeCollisions.isNotEmpty) {
+      print("Hola");
+      print(activeCollisions);
+    }
+
+    if (gameRef.joystick.direction != JoystickDirection.idle) {
+      final a = gameRef.joystick.direction;
+      gameRef.collisionDirection.add(a);
+    }
   }
 
   @override
@@ -45,17 +56,16 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
 
         break;
       case JoystickDirection.down:
-        // if (!v) {
-        //   print(v);
-        //   SpriteAnimation? a = animations![AnimationPlayerStates.fishDown];
-        //   a!.reset();
-        //   print(a);
+        if (!v) {
+          print(v);
+          SpriteAnimation? a = animations![AnimationPlayerStates.fishDown];
+          a!.reset();
+          print(a);
 
-        //   current = AnimationPlayerStates.down;
-        // } else {
-        //   current = AnimationPlayerStates.fishDown;
-        // }
-        current = AnimationPlayerStates.down;
+          current = AnimationPlayerStates.down;
+        } else {
+          current = AnimationPlayerStates.fishDown;
+        }
         if (y < gameRef.mapHeight - height) {
           if (!game.collisionDirection.contains(JoystickDirection.down)) {
             y += dt * characterSpeed;
@@ -98,6 +108,26 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   @override
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
+
+    switch (gameRef.joystick.direction) {
+      case JoystickDirection.down:
+        gameRef.collisionDirection.remove(JoystickDirection.up);
+
+        break;
+      case JoystickDirection.left:
+        gameRef.collisionDirection.remove(JoystickDirection.right);
+
+        break;
+      case JoystickDirection.up:
+        gameRef.collisionDirection.remove(JoystickDirection.down);
+
+        break;
+      case JoystickDirection.right:
+        gameRef.collisionDirection.remove(JoystickDirection.left);
+
+        break;
+      default:
+    }
     if (activeCollisions.isEmpty) {
       gameRef.collisionDirection = [];
     }

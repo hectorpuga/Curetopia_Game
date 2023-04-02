@@ -30,13 +30,13 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
     homeMap = await TiledComponent.load("map.tmx", Vector2.all(16));
 
     add(homeMap);
-    joystick = JostickGame();
-    add(joystick);
-
     mapWidth = homeMap.size.x;
     mapHeight = homeMap.size.y;
     Loads.components(homeMap, this, "Obstacles");
     Loads.components(homeMap, this, "Fish");
+
+    joystick = JostickGame();
+    add(joystick);
 
     player =
         PlayerGame(images.fromCache("AshAnimateds.png"), animationMapPlayer);

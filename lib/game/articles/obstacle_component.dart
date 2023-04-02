@@ -11,46 +11,4 @@ class ObstacleComponent extends PositionComponent
     add(RectangleHitbox(isSolid: true, priority: 4, anchor: Anchor.topLeft));
     return null;
   }
-
-  @override
-  void onCollisionStart(
-    Set<Vector2> intersectionPoints,
-    PositionComponent other,
-  ) {
-    super.onCollisionStart(intersectionPoints, other);
-
-    if (activeCollisions.isNotEmpty) {
-      print("Hola");
-      print(activeCollisions);
-    }
-
-    if (gameRef.joystick.direction != JoystickDirection.idle) {
-      final a = gameRef.joystick.direction;
-      gameRef.collisionDirection.add(a);
-    }
-  }
-
-  @override
-  void onCollisionEnd(PositionComponent other) {
-    super.onCollisionEnd(other);
-
-    switch (gameRef.joystick.direction) {
-      case JoystickDirection.down:
-        gameRef.collisionDirection.remove(JoystickDirection.up);
-        break;
-      case JoystickDirection.left:
-        gameRef.collisionDirection.remove(JoystickDirection.right);
-
-        break;
-      case JoystickDirection.up:
-        gameRef.collisionDirection.remove(JoystickDirection.down);
-
-        break;
-      case JoystickDirection.right:
-        gameRef.collisionDirection.remove(JoystickDirection.left);
-
-        break;
-      default:
-    }
-  }
 }
