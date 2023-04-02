@@ -1,7 +1,6 @@
 export 'animations/player.dart';
 export 'characters/player.dart';
 export 'components/components.dart';
-export 'loaders/loaders.dart';
 export 'package:flame_audio/audio_pool.dart';
 export 'package:flame_tiled/flame_tiled.dart';
 export 'package:flame/components.dart';

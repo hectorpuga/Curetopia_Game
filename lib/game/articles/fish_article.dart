@@ -1,10 +1,11 @@
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 
+import '../../common/enums.dart';
 import '../my_game.dart';
 
 // Clase para crear un cuadro de contorno al rededor de los graficos de amigos
-class ObstacleComponent extends PositionComponent
+class Fish extends PositionComponent
     with CollisionCallbacks, HasGameRef<MyGame> {
   @override
   Future<void>? onLoad() {
@@ -17,17 +18,11 @@ class ObstacleComponent extends PositionComponent
     Set<Vector2> intersectionPoints,
     PositionComponent other,
   ) {
-    super.onCollisionStart(intersectionPoints, other);
-
-    if (activeCollisions.isNotEmpty) {
-      print("Hola");
-      print(activeCollisions);
-    }
-
+    gameRef.player.v = true;
     if (gameRef.joystick.direction != JoystickDirection.idle) {
-      final a = gameRef.joystick.direction;
-      gameRef.collisionDirection.add(a);
+      gameRef.collisionDirection.add(gameRef.joystick.direction);
     }
+    super.onCollisionStart(intersectionPoints, other);
   }
 
   @override
@@ -37,6 +32,7 @@ class ObstacleComponent extends PositionComponent
     switch (gameRef.joystick.direction) {
       case JoystickDirection.down:
         gameRef.collisionDirection.remove(JoystickDirection.up);
+
         break;
       case JoystickDirection.left:
         gameRef.collisionDirection.remove(JoystickDirection.right);

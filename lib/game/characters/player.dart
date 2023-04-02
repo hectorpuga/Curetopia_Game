@@ -2,12 +2,12 @@
 import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
-import 'package:flame/sprite.dart';
 import '../../common/enums.dart';
 import '../my_game.dart';
 
 class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     with CollisionCallbacks, HasGameRef<MyGame> {
+  bool v = false;
   double characterSpeed = 100;
   PlayerGame(
       Image image, Map<AnimationPlayerStates, SpriteAnimationData> animationMap)
@@ -17,30 +17,45 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   Future<void>? onLoad() async {
     super.onLoad();
 
-    current = AnimationPlayerStates.idle;
     // Instancia para craeación del spritesheet el cual contendra las animaciónes
-    final spriteSheet = SpriteSheet(
-        image: await gameRef.images.load("Ash.png"), srcSize: Vector2(48, 48));
+
     debugMode = true;
     position = Vector2(529, 128);
-    size = Vector2.all(64);
+    size = Vector2(64, 64);
 
     // Se añade el personaje al juego
     add(RectangleHitbox(size: Vector2(42, 44), position: Vector2(12, 12)));
   }
 
   @override
+  void onCollisionStart(
+      Set<Vector2> intersectionPoints, PositionComponent other) {
+    // TODO: implement onCollisionStart
+    super.onCollisionStart(intersectionPoints, other);
+  }
+
+  @override
   void update(double dt) {
     super.update(dt);
     // Switch el cual nos proporciona los diferentes opciones que seran cambiadas al se tocada la pantalla
+
     switch (gameRef.joystick.direction) {
       case JoystickDirection.idle:
         current = AnimationPlayerStates.idle;
 
         break;
       case JoystickDirection.down:
-        current = AnimationPlayerStates.down;
+        // if (!v) {
+        //   print(v);
+        //   SpriteAnimation? a = animations![AnimationPlayerStates.fishDown];
+        //   a!.reset();
+        //   print(a);
 
+        //   current = AnimationPlayerStates.down;
+        // } else {
+        //   current = AnimationPlayerStates.fishDown;
+        // }
+        current = AnimationPlayerStates.down;
         if (y < gameRef.mapHeight - height) {
           if (!game.collisionDirection.contains(JoystickDirection.down)) {
             y += dt * characterSpeed;

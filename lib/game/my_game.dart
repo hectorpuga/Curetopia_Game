@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'game.dart';
+import 'loaderscomponents.dart';
 
 class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   late PlayerGame player;
@@ -13,8 +14,10 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   List collisionDirection = [];
   late double mapWidth;
   late double mapHeight;
+  bool isIdle = false;
+  bool activeCollision = false;
   static const imageAssets = [
-    "Ash.png",
+    "AshAnimateds.png",
   ];
 
   GameProvider gameProvider;
@@ -22,24 +25,25 @@ class MyGame extends FlameGame with HasCollisionDetection, HasDraggables {
   @override
   Future<void> onLoad() async {
     super.onLoad();
+
     await images.loadAll(imageAssets);
     homeMap = await TiledComponent.load("map.tmx", Vector2.all(16));
-    add(homeMap);
 
-    player = PlayerGame(images.fromCache("Ash.png"), animationMapPlayer);
-    add(player);
+    add(homeMap);
+    joystick = JostickGame();
+    add(joystick);
 
     mapWidth = homeMap.size.x;
     mapHeight = homeMap.size.y;
-    addBakedGoods(homeMap, this);
-    loadFriends(homeMap, this);
-    loadObstacles(homeMap, this);
+    Loads.components(homeMap, this, "Obstacles");
+    Loads.components(homeMap, this, "Fish");
+
+    player =
+        PlayerGame(images.fromCache("AshAnimateds.png"), animationMapPlayer);
+    add(player);
 
     camera.followComponent(player,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
-
-    joystick = JostickGame();
-    add(joystick);
   }
 
   @override

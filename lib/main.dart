@@ -9,36 +9,41 @@ import 'game/my_game.dart';
 import 'game/overlays/overlay_controller.dart';
 
 void main() {
+  // Inicializa los metodos de pantalla completa en el juego
   WidgetsFlutterBinding.ensureInitialized();
+  // implementa pantalla completa
   Flame.device.fullScreen();
+  // Implementa rotación de pantalla completa
   Flame.device.setLandscape();
-  // Creación de instancia del juego para ser ejecutada
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => GameProvider())],
-      child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: Consumer(builder: (context, value, child) {
-            final gameProvider = context.read<GameProvider>();
+  runApp(
+      // Creación de estados del juego
+      MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => GameProvider())],
+          child: MaterialApp(
+              debugShowCheckedModeBanner: false,
+              home: Consumer(builder: (context, value, child) {
+                final gameProvider = context.read<GameProvider>();
 
-            return Scaffold(
-                body: GameWidget(
-              loadingBuilder: (context) => const Center(
-                  child: SizedBox(
-                width: 200,
-                child: LinearProgressIndicator(
-                  color: Colors.white,
-                  minHeight: 3,
-                  backgroundColor: Colors.black,
-                ),
-              )),
-              game: MyGame(gameProvider),
-              overlayBuilderMap: {
-                'ButtonController': (BuildContext context, MyGame game) =>
-                    OverlayController(
-                      game: game,
+                return Scaffold(
+                    body: GameWidget(
+                  loadingBuilder: (context) => const Center(
+                      child: SizedBox(
+                    width: 200,
+                    // Creación de barra de carga inicial
+                    child: LinearProgressIndicator(
+                      color: Colors.white,
+                      minHeight: 3,
+                      backgroundColor: Colors.black,
                     ),
-              },
-              initialActiveOverlays: ["ButtonController"],
-            ));
-          }))));
+                  )),
+                  game: MyGame(gameProvider),
+                  overlayBuilderMap: {
+                    'ButtonController': (BuildContext context, MyGame game) =>
+                        OverlayController(
+                          game: game,
+                        ),
+                  },
+                  initialActiveOverlays: ["ButtonController"],
+                ));
+              }))));
 }
