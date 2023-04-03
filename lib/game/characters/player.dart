@@ -9,7 +9,7 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   bool isFish = false;
   final List collisionDirection = [];
   double _characterSpeed = 100;
-  late final JoystickComponent joystick;
+  final JoystickComponent joystick;
   final List sizeMap;
   PlayerGame(this.sizeMap, this.joystick, Image image,
       Map<AnimationPlayerStates, SpriteAnimationData> animationMap)
@@ -18,13 +18,9 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   @override
   Future<void>? onLoad() async {
     super.onLoad();
-
-    // Instancia para craeación del spritesheet el cual contendra las animaciónes
-
     debugMode = true;
     position = Vector2(529, 128);
 
-    // Se añade el personaje al juego
     add(RectangleHitbox(size: Vector2(42, 44), position: Vector2(12, 12)));
   }
 
@@ -43,7 +39,6 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   @override
   void update(double dt) {
     super.update(dt);
-    // Switch el cual nos proporciona los diferentes opciones que seran cambiadas al se tocada la pantalla
     if (!isFish) {
       switch (joystick.direction) {
         case JoystickDirection.idle:

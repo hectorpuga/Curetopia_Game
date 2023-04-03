@@ -10,10 +10,4 @@ class JostickGame extends JoystickComponent {
                 radius: 50, paint: BasicPalette.blue.withAlpha(100).paint()),
             knob: CircleComponent(
                 radius: 30, paint: BasicPalette.blue.withAlpha(200).paint()));
-
-  @override
-  Future<void> onLoad() {
-    // TODO: implement onLoad
-    return super.onLoad();
-  }
 }

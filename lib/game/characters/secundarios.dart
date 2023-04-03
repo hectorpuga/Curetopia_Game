@@ -12,11 +12,4 @@ class FriendComponent extends PositionComponent
     add(RectangleHitbox());
     return null;
   }
-
-  @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    String text = "";
-    // TODO: implement onCollision
-    super.onCollision(intersectionPoints, other);
-  }
 }

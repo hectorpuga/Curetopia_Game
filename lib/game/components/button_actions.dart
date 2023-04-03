@@ -1,4 +1,3 @@
-import 'package:flame/input.dart';
 import 'package:flutter/cupertino.dart';
 
 import '../game.dart';

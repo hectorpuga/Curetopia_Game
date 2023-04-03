@@ -1,7 +1,7 @@
-import 'package:Game/provider/game_provider.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:game/provider/game_provider.dart';
 
 import 'package:provider/provider.dart';
 

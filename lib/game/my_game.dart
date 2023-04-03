@@ -1,9 +1,5 @@
-import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
-
-import 'components/button_actions.dart';
-import 'game.dart';
-import 'loaderscomponents.dart';
+import 'package:game/game/game.dart';
 
 class MyGame extends FlameGame with HasCollisionDetection {
   late PlayerGame player;
@@ -59,11 +55,6 @@ class MyGame extends FlameGame with HasCollisionDetection {
 
     camera.followComponent(player,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
-  }
-
-  @override
-  void update(double dt) {
-    super.update(dt);
   }
 
   @override
