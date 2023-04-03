@@ -3,15 +3,17 @@ import 'dart:ui';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import '../../common/enums.dart';
-import '../my_game.dart';
 
 class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
-    with CollisionCallbacks, HasGameRef<MyGame> {
-  bool v = false;
-  double characterSpeed = 100;
-  PlayerGame(
-      Image image, Map<AnimationPlayerStates, SpriteAnimationData> animationMap)
-      : super.fromFrameData(image, animationMap);
+    with CollisionCallbacks {
+  bool isFish = false;
+  final List collisionDirection = [];
+  double _characterSpeed = 100;
+  late final JoystickComponent joystick;
+  final List sizeMap;
+  PlayerGame(this.sizeMap, this.joystick, Image image,
+      Map<AnimationPlayerStates, SpriteAnimationData> animationMap)
+      : super.fromFrameData(image, animationMap, size: Vector2(64, 64));
 
   @override
   Future<void>? onLoad() async {
@@ -21,7 +23,6 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
 
     debugMode = true;
     position = Vector2(529, 128);
-    size = Vector2(64, 64);
 
     // Se añade el personaje al juego
     add(RectangleHitbox(size: Vector2(42, 44), position: Vector2(12, 12)));
@@ -34,14 +35,8 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   ) {
     super.onCollisionStart(intersectionPoints, other);
 
-    if (activeCollisions.isNotEmpty) {
-      print("Hola");
-      print(activeCollisions);
-    }
-
-    if (gameRef.joystick.direction != JoystickDirection.idle) {
-      final a = gameRef.joystick.direction;
-      gameRef.collisionDirection.add(a);
+    if (joystick.direction != JoystickDirection.idle) {
+      collisionDirection.add(joystick.direction);
     }
   }
 
@@ -49,59 +44,63 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   void update(double dt) {
     super.update(dt);
     // Switch el cual nos proporciona los diferentes opciones que seran cambiadas al se tocada la pantalla
+    if (!isFish) {
+      switch (joystick.direction) {
+        case JoystickDirection.idle:
+          current = AnimationPlayerStates.idle;
 
-    switch (gameRef.joystick.direction) {
-      case JoystickDirection.idle:
-        current = AnimationPlayerStates.idle;
-
-        break;
-      case JoystickDirection.down:
-        if (!v) {
-          print(v);
-          SpriteAnimation? a = animations![AnimationPlayerStates.fishDown];
-          a!.reset();
-          print(a);
-
+          break;
+        case JoystickDirection.down:
           current = AnimationPlayerStates.down;
-        } else {
-          current = AnimationPlayerStates.fishDown;
-        }
-        if (y < gameRef.mapHeight - height) {
-          if (!game.collisionDirection.contains(JoystickDirection.down)) {
-            y += dt * characterSpeed;
+
+          if (y < sizeMap[1] - height &&
+              !collisionDirection.contains(JoystickDirection.down)) {
+            y += dt * _characterSpeed;
           }
-        }
 
-        break;
-      case JoystickDirection.left:
-        current = AnimationPlayerStates.left;
+          break;
+        case JoystickDirection.left:
+          current = AnimationPlayerStates.left;
 
-        if (x > 0) {
-          if (!game.collisionDirection.contains(JoystickDirection.left)) {
-            x -= dt * characterSpeed;
+          if (x > 0) {
+            if (!collisionDirection.contains(JoystickDirection.left)) {
+              x -= dt * _characterSpeed;
+            }
           }
-        }
-        break;
-      case JoystickDirection.up:
-        current = AnimationPlayerStates.up;
+          break;
+        case JoystickDirection.up:
+          current = AnimationPlayerStates.up;
 
-        if (y > 0) {
-          if (!game.collisionDirection.contains(JoystickDirection.up)) {
-            y -= dt * characterSpeed;
+          if (y > 0 && !collisionDirection.contains(JoystickDirection.up)) {
+            y -= dt * _characterSpeed;
           }
-        }
 
-        break;
-      case JoystickDirection.right:
-        current = AnimationPlayerStates.right;
+          break;
+        case JoystickDirection.right:
+          current = AnimationPlayerStates.right;
 
-        if (x < gameRef.mapWidth - width) {
-          if (!game.collisionDirection.contains(JoystickDirection.right)) {
-            x += dt * characterSpeed;
+          if (x < sizeMap[0] - width &&
+              !collisionDirection.contains(JoystickDirection.right)) {
+            x += dt * _characterSpeed;
           }
-        }
-        break;
-      default:
+
+          break;
+        default:
+      }
+    }
+  }
+
+  void speedRun() => _characterSpeed = 150;
+
+  void speedWalk() => _characterSpeed = 100;
+
+  void fishedStart() {
+    if (!isFish) {
+      isFish = true;
+      animations![AnimationPlayerStates.fishDown]!.reset();
+      current = AnimationPlayerStates.fishDown;
+    } else {
+      isFish = false;
     }
   }
 
@@ -109,27 +108,25 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
 
-    switch (gameRef.joystick.direction) {
+    switch (joystick.direction) {
       case JoystickDirection.down:
-        gameRef.collisionDirection.remove(JoystickDirection.up);
+        collisionDirection.remove(JoystickDirection.up);
 
         break;
       case JoystickDirection.left:
-        gameRef.collisionDirection.remove(JoystickDirection.right);
+        collisionDirection.remove(JoystickDirection.right);
 
         break;
       case JoystickDirection.up:
-        gameRef.collisionDirection.remove(JoystickDirection.down);
+        collisionDirection.remove(JoystickDirection.down);
 
         break;
       case JoystickDirection.right:
-        gameRef.collisionDirection.remove(JoystickDirection.left);
+        collisionDirection.remove(JoystickDirection.left);
 
         break;
       default:
     }
-    if (activeCollisions.isEmpty) {
-      gameRef.collisionDirection = [];
-    }
+    if (activeCollisions.isEmpty) collisionDirection.clear();
   }
 }

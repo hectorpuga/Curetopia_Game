@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import 'game/menus/main_menu.dart';
 import 'game/my_game.dart';
 import 'game/overlays/overlay_controller.dart';
 
@@ -38,12 +39,12 @@ void main() {
                   )),
                   game: MyGame(gameProvider),
                   overlayBuilderMap: {
-                    'ButtonController': (BuildContext context, MyGame game) =>
-                        OverlayController(
+                    'ButtonController': (_, MyGame game) => OverlayController(
                           game: game,
                         ),
+                    'Menu': (_, MyGame game) => MainMenu(game)
                   },
-                  initialActiveOverlays: ["ButtonController"],
+                  initialActiveOverlays: const ["ButtonController"],
                 ));
               }))));
 }

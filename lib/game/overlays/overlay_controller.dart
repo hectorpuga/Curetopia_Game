@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../my_game.dart';
 import '../../provider/game_provider.dart';
 import 'audio_overlay.dart';
-import 'dialog_overlay.dart';
 
 class OverlayController extends StatelessWidget {
   final MyGame game;
@@ -23,11 +22,6 @@ class OverlayController extends StatelessWidget {
           child: Row(
             children: [
               Expanded(flex: 2, child: ScoreOver(gameProvider: gameProvider)),
-              Expanded(
-                  flex: 2,
-                  child: DialogOverlay(
-                    game: game,
-                  ))
             ],
           ),
         )

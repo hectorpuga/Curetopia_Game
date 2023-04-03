@@ -9,6 +9,7 @@ class Fish extends PositionComponent
   @override
   Future<void>? onLoad() {
     add(RectangleHitbox(isSolid: true, priority: 4, anchor: Anchor.topLeft));
+
     return null;
   }
 
@@ -18,13 +19,13 @@ class Fish extends PositionComponent
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    gameRef.player.v = true;
+    gameRef.add(gameRef.buttonFish);
   }
 
   @override
   void onCollisionEnd(PositionComponent other) {
-    // TODO: implement onCollisionEnd
     super.onCollisionEnd(other);
-    gameRef.player.v = false;
+
+    gameRef.remove(gameRef.buttonFish);
   }
 }
