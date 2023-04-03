@@ -46,12 +46,12 @@ class MyGame extends FlameGame with HasCollisionDetection {
           ..onCancelled = () => player.isFish = false;
 
     add(homeMap);
+    add(joystick);
+    add(player);
     Loads.components(homeMap, this, "Obstacles");
     Loads.components(homeMap, this, "Fish");
     add(dialogBox);
-    add(joystick);
     add(buttonRun);
-    add(player);
 
     camera.followComponent(player,
         worldBounds: Rect.fromLTRB(0, 0, mapWidth, mapHeight));
