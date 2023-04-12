@@ -6,6 +6,8 @@ class MyGame extends FlameGame with HasCollisionDetection {
   late JoystickComponent joystick;
   late TiledComponent homeMap;
   final List<Component> componentList = [];
+
+  final List<int>ids=[];
   late double mapWidth;
   late DialogBox dialogBox;
   late double mapHeight;
@@ -18,7 +20,7 @@ class MyGame extends FlameGame with HasCollisionDetection {
     super.onLoad();
 
     await images.loadAll(imageAssets);
-    homeMap = await TiledComponent.load("map.tmx", Vector2.all(16));
+    homeMap = await TiledComponent.load("Mapa_Principal64.tmx", Vector2.all(64));
     mapWidth = homeMap.size.x;
     mapHeight = homeMap.size.y;
 
@@ -47,8 +49,9 @@ class MyGame extends FlameGame with HasCollisionDetection {
 
     add(homeMap);
     add(joystick);
-    add(player);
     Loads.components(homeMap, this, "Obstacles");
+
+    add(player);
     Loads.components(homeMap, this, "Fish");
     add(dialogBox);
     add(buttonRun);

@@ -6,20 +6,43 @@ import 'my_game.dart';
 
 class Loads {
   static components(TiledComponent homeMap, MyGame game, String component) {
-    dynamic obstaclesGroup = homeMap.tileMap.getLayer<ObjectGroup>(component);
+    ObjectGroup? obstaclesGroup = homeMap.tileMap.getLayer(component);
 
-    for (var obstaclesBox in obstaclesGroup!.objects) {
-      final obstacle = determinaObject(component)
+    for (TiledObject obstaclesBox in obstaclesGroup!.objects) {
+
+List<Vector2> polygenVectores=[];
+      if(obstaclesBox.isPolygon){
+        polygenVectores= listPolyng(obstaclesBox.polygon);
+
+      }
+      final obstacle = determinaObject(component,polygenVectores)
         ..position = Vector2(obstaclesBox.x, obstaclesBox.y)
         ..width = obstaclesBox.width
         ..height = obstaclesBox.height
-        ..debugMode = true;
+        ;
 
       game.componentList.add(obstacle);
+      
       game.add(obstacle);
     }
   }
 
-  static determinaObject(String compo) =>
-      compo == "Fish" ? Fish() : ObstacleComponent();
+  static listPolyng(List<Point> listPoint){
+
+    List<Vector2>listVector=[];
+
+    for (Point point in listPoint) {
+listVector.add(Vector2(point.x, point.y));
+      
+    }
+
+    return listVector;
+
+
+  }
+
+  static determinaObject(String campo,List<Vector2> lista )=>
+       campo == "Fish" ? Fish() : lista.isEmpty?ObstacleComponent():ObstacleComponent(lista: lista);
+      
+      
 }
