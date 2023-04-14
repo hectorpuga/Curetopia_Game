@@ -11,7 +11,7 @@ class MyGame extends FlameGame with HasCollisionDetection {
   late double mapWidth;
   late DialogBox dialogBox;
   late double mapHeight;
-  final imageAssets = ["AshAnimateds.png", "Boton.png","M1.png"];
+  final imageAssets = ["AshAnimateds.png", "Boton.png","M1.png","M2.png","M3.png"];
   final GameProvider gameProvider;
   late final HudButtonComponent buttonFish;
   MyGame(this.gameProvider);
@@ -50,7 +50,9 @@ class MyGame extends FlameGame with HasCollisionDetection {
     add(homeMap);
     add(joystick);
     Loads.components(homeMap, this, "Obstacles");
-    Loads.components(homeMap, this, "Objects",image:images.fromCache("M1.png"));
+    Loads.components(homeMap, this, "Paracetamol",image:images.fromCache("M1.png"));
+    Loads.components(homeMap, this, "Ibuprofeno",image:images.fromCache("M2.png"));
+    Loads.components(homeMap, this, "Ambroxol",image:images.fromCache("M3.png"));
 
     add(player);
     Loads.components(homeMap, this, "Fish");

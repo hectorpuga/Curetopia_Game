@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="406">
+<map version="1.10" tiledversion="git" orientation="orthogonal" renderorder="right-down" width="60" height="34" tilewidth="64" tileheight="64" infinite="0" nextlayerid="10" nextobjectid="454">
  <tileset firstgid="1" source="TilesSetPuga64.tsx"/>
  <layer id="1" name="MapaPrincipal" width="60" height="34">
   <data encoding="base64" compression="zlib">
@@ -146,9 +146,6 @@
   <object id="207" x="1855.97" y="960.302" width="254.188" height="49.1007"/>
   <object id="210" x="69.2707" y="812.969">
    <polygon points="0,0 397.345,-1.92419 395.42,210.698 234.751,210.698 233.789,165.48 190.495,166.442 189.532,137.579"/>
-  </object>
-  <object id="213" x="0.977804" y="1582.09">
-   <polygon points="0,0 303.986,-0.874197 303.986,-46.8785 316.6,-46.8785 316.6,16.9339 448.173,17.8085 448.173,-47.761 461.287,-47.761 462.598,-3.17378 1167.14,-2.67297 1165.86,180.8 1151.04,181.671 1151.25,592.279"/>
   </object>
   <object id="214" x="302.166" y="1088.06" width="160.77" height="384.304"/>
   <object id="215" x="2909.78" y="388.157">
@@ -375,41 +372,36 @@
   <object id="370" x="1805.15" y="1153.42">
    <polygon points="0,0 -13.5456,15.0791 -13.1086,285.391 -1.89889,294.52 6.77709,295.548 5.85526,313.442 15.7704,313.569 15.8022,310.518 13.8001,310.391 13.7683,302.605 14.8806,302.573 14.8488,298.537 15.8022,298.537 15.8022,297.552 16.8191,297.584 16.8191,296.504 148.914,296.586 148.885,301.597 149.878,301.597 149.834,310.536 147.817,310.596 147.847,313.62 157.869,313.665 157.884,310.611 155.853,310.581 155.897,302.546 156.846,302.59 156.861,298.602 157.854,298.602 157.869,297.564 158.844,297.583 158.807,296.6 159.827,296.562 159.827,298.565 160.867,298.565 179.042,284.184"/>
   </object>
+  <object id="423" x="0.487734" y="1579.77" width="1151.1" height="597.482"/>
+  <object id="424" x="1153.31" y="1599.74" width="14.321" height="166.233"/>
+  <object id="425" x="1168.31" y="1727.54" width="47.6654" height="19.6368"/>
  </objectgroup>
- <objectgroup id="7" name="Objects">
-  <object id="372" name="M1" x="270.431" y="469.219" width="22.6539" height="26.6183"/>
-  <object id="373" name="M1" x="446.282" y="466.387" width="22.6539" height="26.6183"/>
-  <object id="374" name="M1" x="541.286" y="447.202" width="22.6539" height="26.6183"/>
-  <object id="375" name="M1" x="632.237" y="472.53" width="22.6539" height="26.6183"/>
-  <object id="376" name="M1" x="718.583" y="459.866" width="22.6539" height="26.6183"/>
-  <object id="378" name="M1" x="799.173" y="455.261" width="22.6539" height="26.6183"/>
-  <object id="379" name="M1" x="807.232" y="356.251" width="22.6539" height="26.6183"/>
-  <object id="380" name="M1" x="779.601" y="271.056" width="22.6539" height="26.6183"/>
-  <object id="381" name="M1" x="109.557" y="450.656" width="22.6539" height="26.6183"/>
-  <object id="382" name="M1" x="161.365" y="462.169" width="22.6539" height="26.6183"/>
-  <object id="383" name="M1" x="328.3" y="462.169" width="22.6539" height="26.6183"/>
-  <object id="384" name="M1" x="159.062" y="334.377" width="22.6539" height="26.6183"/>
-  <object id="385" name="M1" x="245.408" y="320.561" width="22.6539" height="26.6183"/>
-  <object id="386" name="M1" x="190.147" y="258.392" width="22.6539" height="26.6183"/>
-  <object id="387" name="M1" x="113.011" y="264.149" width="22.6539" height="26.6183"/>
-  <object id="388" name="M1" x="304.123" y="281.418" width="22.6539" height="26.6183"/>
-  <object id="389" name="M1" x="330.603" y="318.259" width="22.6539" height="26.6183"/>
-  <object id="390" name="M1" x="290.308" y="345.89" width="22.6539" height="26.6183"/>
-  <object id="391" name="M1" x="185.542" y="348.192" width="22.6539" height="26.6183"/>
-  <object id="392" name="M1" x="103.801" y="343.587" width="22.6539" height="26.6183"/>
-  <object id="393" name="M1" x="46.2369" y="464.471" width="22.6539" height="26.6183"/>
-  <object id="394" name="M1" x="494.084" y="474.833" width="22.6539" height="26.6183"/>
-  <object id="395" name="M1" x="865.947" y="455.261" width="22.6539" height="26.6183"/>
-  <object id="396" name="M1" x="862.493" y="336.679" width="22.6539" height="26.6183"/>
-  <object id="397" name="M1" x="717.432" y="262.998" width="22.6539" height="26.6183"/>
-  <object id="398" name="M1" x="833.711" y="225.005" width="22.6539" height="26.6183"/>
-  <object id="399" name="M1" x="734.701" y="309.049" width="22.6539" height="26.6183"/>
-  <object id="400" name="M1" x="750.819" y="193.921" width="22.6539" height="26.6183"/>
-  <object id="401" name="M1" x="837.165" y="265.3" width="22.6539" height="26.6183"/>
-  <object id="402" name="M1" x="765.786" y="336.679" width="22.6539" height="26.6183"/>
-  <object id="403" name="M1" x="674.835" y="266.451" width="22.6539" height="26.6183"/>
-  <object id="404" name="M1" x="686.347" y="199.677" width="22.6539" height="26.6183"/>
-  <object id="405" name="M1" x="789.962" y="398.848" width="22.6539" height="26.6183"/>
+ <objectgroup id="7" name="Paracetamol">
+  <object id="372" name="paracetamol" x="270.431" y="469.219" width="22.6539" height="26.6183"/>
+  <object id="433" name="paracetamol" x="531.57" y="947.658" width="22.6539" height="26.6183"/>
+  <object id="434" name="paracetamol" x="174.922" y="1544.05" width="22.6539" height="26.6183"/>
+  <object id="435" name="paracetamol" x="1563.87" y="1328.08" width="22.6539" height="26.6183"/>
+  <object id="436" name="paracetamol" x="1894.76" y="1706.52" width="22.6539" height="26.6183"/>
+  <object id="437" name="paracetamol" x="1716.43" y="2057.23" width="22.6539" height="26.6183"/>
+  <object id="438" name="paracetamol" x="1236.94" y="2140.45" width="22.6539" height="26.6183"/>
+ </objectgroup>
+ <objectgroup id="8" name="Ibuprofeno">
+  <object id="431" name="ibuprofeno" x="699.422" y="148.007" width="22.6539" height="26.6183"/>
+  <object id="439" name="ibuprofeno" x="1367.71" y="448.351" width="22.6539" height="26.6183"/>
+  <object id="440" name="ibuprofeno" x="1234.96" y="733.669" width="22.6539" height="26.6183"/>
+  <object id="441" name="ibuprofeno" x="333.432" y="719.8" width="22.6539" height="26.6183"/>
+  <object id="442" name="ibuprofeno" x="1308.27" y="1375.63" width="22.6539" height="26.6183"/>
+  <object id="443" name="ibuprofeno" x="2606.07" y="1694.64" width="22.6539" height="26.6183"/>
+ </objectgroup>
+ <objectgroup id="9" name="Ambroxol">
+  <object id="445" name="ambroxol" x="3606.2" y="1558.04" width="22.6539" height="26.6183"/>
+  <object id="446" name="ambroxol" x="3347.23" y="395.094" width="22.6539" height="26.6183"/>
+  <object id="447" name="ambroxol" x="2589" y="443.461" width="22.6539" height="26.6183"/>
+  <object id="448" name="ambroxol" x="3642.83" y="1171.03" width="22.6539" height="26.6183"/>
+  <object id="450" name="ambroxol" x="1802.7" y="326.006" width="22.6539" height="26.6183"/>
+  <object id="451" name="ambroxol" x="1978.89" y="867.604" width="22.6539" height="26.6183"/>
+  <object id="452" name="ambroxol" x="1310.04" y="1817.03" width="22.6539" height="26.6183"/>
+  <object id="453" name="ambroxol" x="3026.66" y="1446.33" width="22.6539" height="26.6183"/>
  </objectgroup>
  <objectgroup id="6" name="Fish">
   <object id="212" x="319.159" y="1536.46" width="126.764" height="43.1538"/>

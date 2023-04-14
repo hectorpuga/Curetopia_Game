@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:game/provider/invetario.dart';
 import 'package:provider/provider.dart';
 
+import '../articles/medicina.dart';
 import '../my_game.dart';
 
 class InventaryBase extends StatelessWidget {
@@ -44,7 +45,7 @@ game.overlays.add("ButtonController");
           
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
-                child: Draggable<bool>(
+                child: Draggable<MedicinaComponent>(
                   onDragStarted: (){
                     provider.movComponent=true;
                   },
@@ -58,7 +59,7 @@ game.overlays.add("ButtonController");
 
                        
                         },
-                        data: false,
+                        data: provider.getMedicina[i],
                        
                         feedback: ClipRRect(
                 borderRadius: BorderRadius.circular(10),
@@ -93,10 +94,10 @@ game.overlays.add("ButtonController");
               ClipRRect(
                 borderRadius: BorderRadius.circular(10),
           
-                child: DragTarget<bool>(
+                child: DragTarget<MedicinaComponent>(
                   
                     onAccept: (data) {
-              
+              print(data.nombre);
               
                     },
                     builder: (_, __, ___) =>

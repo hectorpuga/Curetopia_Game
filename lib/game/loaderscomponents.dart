@@ -45,7 +45,9 @@ return listVector;
 
   }
 
-  static determinaObject(String campo,List<Vector2> lista ,MyGame game,{image,cant,nombre})=> campo == "Fish" ? Fish() :campo=="Objects"?MedicinaComponent(image,game,cantidad: cant,nombre:nombre):lista.isEmpty?ObstacleComponent():ObstacleComponent(lista: lista);
+  static determinaObject(String campo,List<Vector2> lista ,MyGame game,{image,cant,nombre})=> campo == "Fish" ? Fish() :campo=="Paracetamol"?MedicinaComponent(image,game,cantidad: cant,nombre:nombre):campo=="Ibuprofeno"?MedicinaComponent(image,game,cantidad: cant,nombre:nombre):campo=="Ambroxol"?MedicinaComponent(image,game,cantidad: cant,nombre:nombre):
+  
+  lista.isEmpty?ObstacleComponent():ObstacleComponent(lista: lista);
        
        
        
