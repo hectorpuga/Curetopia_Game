@@ -1,8 +1,11 @@
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 
+import '../my_game.dart';
+
 class AudioOverlay extends StatelessWidget {
-  const AudioOverlay({
+  late MyGame game;
+   AudioOverlay(this.game,{
     super.key,
   });
 
@@ -28,6 +31,15 @@ class AudioOverlay extends StatelessWidget {
               },
               icon: const Icon(Icons.volume_off_rounded)),
         ),
+         Container(
+          color: const Color(0x8f37474f),
+          child: IconButton(
+              color: Colors.pink.shade200,
+              onPressed: () {
+                game.overlays.add("Inventario");
+              },
+              icon: const Icon(Icons.inventory),
+        ),)
       ],
     );
   }

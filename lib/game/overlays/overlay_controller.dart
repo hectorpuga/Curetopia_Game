@@ -2,7 +2,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 
 import '../my_game.dart';
-import '../../provider/game_provider.dart';
+import '../../provider/invetario.dart';
 import 'audio_overlay.dart';
 
 class OverlayController extends StatelessWidget {
@@ -15,7 +15,7 @@ class OverlayController extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const AudioOverlay(),
+         AudioOverlay(game),
         
       ],
     );

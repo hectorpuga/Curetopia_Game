@@ -7,10 +7,9 @@ import '../my_game.dart';
 class Fish extends PositionComponent
     with CollisionCallbacks, HasGameRef<MyGame> {
   @override
-  Future<void>? onLoad() {
+  void onLoad() {
     add(RectangleHitbox(isSolid: true, priority: 4, anchor: Anchor.topLeft));
 
-    return null;
   }
 
   @override
@@ -25,7 +24,6 @@ class Fish extends PositionComponent
   @override
   void onCollisionEnd(PositionComponent other) {
     super.onCollisionEnd(other);
-
     gameRef.remove(gameRef.buttonFish);
   }
 }

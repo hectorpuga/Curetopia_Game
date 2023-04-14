@@ -1,48 +1,54 @@
+
 import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'articles/medicina.dart';
 import 'articles/obstacle_component.dart';
 import 'articles/fish_article.dart';
 import 'my_game.dart';
 
 class Loads {
-  static components(TiledComponent homeMap, MyGame game, String component) {
-    ObjectGroup? obstaclesGroup = homeMap.tileMap.getLayer(component);
 
-    for (TiledObject obstaclesBox in obstaclesGroup!.objects) {
+  static components(TiledComponent homeMap, MyGame game, String component,{image}) {
+    int cant=-1;
+    final ObjectGroup? obstaclesGroup = homeMap.tileMap.getLayer(component);
+    List<Vector2> polygenVectores=[];
 
-List<Vector2> polygenVectores=[];
-      if(obstaclesBox.isPolygon){
-        polygenVectores= listPolyng(obstaclesBox.polygon);
+      for (TiledObject obstaclesBox in obstaclesGroup!.objects) {
 
-      }
-      final obstacle = determinaObject(component,polygenVectores)
-        ..position = Vector2(obstaclesBox.x, obstaclesBox.y)
-        ..width = obstaclesBox.width
-        ..height = obstaclesBox.height
-        ;
 
-      game.componentList.add(obstacle);
-      
-      game.add(obstacle);
+        if( obstaclesBox.name=="M1"){
+          cant++;
+        }
+
+
+       if(obstaclesBox.isPolygon)polygenVectores= listPolyng(obstaclesBox.polygon);
+
+          game.add(determinaObject(component,polygenVectores,game,image: image,cant: cant,nombre: obstaclesBox.name)
+              ..position = Vector2(obstaclesBox.x, obstaclesBox.y)
+              ..width = obstaclesBox.width
+              ..height = obstaclesBox.height
+        );
+       polygenVectores=[];
+
     }
   }
+
 
   static listPolyng(List<Point> listPoint){
 
-    List<Vector2>listVector=[];
+    final listVector=<Vector2>[];
 
-    for (Point point in listPoint) {
-listVector.add(Vector2(point.x, point.y));
-      
+     for (Point point in listPoint) { 
+       listVector.add(Vector2(point.x, point.y));
     }
-
-    return listVector;
-
+return listVector;
 
   }
 
-  static determinaObject(String campo,List<Vector2> lista )=>
-       campo == "Fish" ? Fish() : lista.isEmpty?ObstacleComponent():ObstacleComponent(lista: lista);
+  static determinaObject(String campo,List<Vector2> lista ,MyGame game,{image,cant,nombre})=> campo == "Fish" ? Fish() :campo=="Objects"?MedicinaComponent(image,game,cantidad: cant,nombre:nombre):lista.isEmpty?ObstacleComponent():ObstacleComponent(lista: lista);
+       
+       
+       
       
       
 }

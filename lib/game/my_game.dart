@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:game/game/game.dart';
+import 'package:game/game/export_game.dart';
+
+
 
 class MyGame extends FlameGame with HasCollisionDetection {
   late PlayerGame player;
   late JoystickComponent joystick;
   late TiledComponent homeMap;
-  final List<Component> componentList = [];
 
-  final List<int>ids=[];
   late double mapWidth;
   late DialogBox dialogBox;
   late double mapHeight;
-  final imageAssets = ["AshAnimateds.png", "Boton.png"];
+  final imageAssets = ["AshAnimateds.png", "Boton.png","M1.png"];
   final GameProvider gameProvider;
   late final HudButtonComponent buttonFish;
   MyGame(this.gameProvider);
@@ -50,9 +50,12 @@ class MyGame extends FlameGame with HasCollisionDetection {
     add(homeMap);
     add(joystick);
     Loads.components(homeMap, this, "Obstacles");
+    Loads.components(homeMap, this, "Objects",image:images.fromCache("M1.png"));
 
     add(player);
     Loads.components(homeMap, this, "Fish");
+
+   
     add(dialogBox);
     add(buttonRun);
 

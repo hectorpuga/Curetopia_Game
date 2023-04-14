@@ -7,21 +7,15 @@ import '../my_game.dart';
 class ObstacleComponent extends PositionComponent
     with CollisionCallbacks, HasGameRef<MyGame> {
 
-
-       List<Vector2>? lista;
-
-      ObstacleComponent({this.lista});
+  List<Vector2>? lista;
+  ObstacleComponent({this.lista});
   @override
-  Future<void>? onLoad() {
+  void onLoad() {
     if(lista!=null){
-
     add(PolygonHitbox(lista!, anchor: Anchor.topLeft));
-    
     }
-
-    add(RectangleHitbox());
-    return null;
-  }
+    add(RectangleHitbox());}
+  
   
  
 }

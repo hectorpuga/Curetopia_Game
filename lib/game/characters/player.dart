@@ -4,6 +4,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:game/game/my_game.dart';
 import '../../common/enums.dart';
+import '../articles/obstacle_component.dart';
 
 class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     with CollisionCallbacks ,HasGameRef<MyGame>{
@@ -21,7 +22,6 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     super.onLoad();
     debugMode = true;
     position = Vector2(529, 450);
-
     add(RectangleHitbox(size: Vector2(42, 44), position: Vector2(12, 12)));
   }
 
@@ -31,22 +31,10 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-
-
-    if (joystick.direction != JoystickDirection.idle) {
-      collisionDirection.add(joystick.direction);
-    }
+    if (joystick.direction != JoystickDirection.idle && other is ObstacleComponent) collisionDirection.add(joystick.direction);
+    
   }
 
-  @override
-  void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    // TODO: implement onCollision
-    super.onCollision(intersectionPoints, other);
-
-    if(!collisionDirection.contains(joystick.direction)){
-
-    }
-  }
 
   @override
   void update(double dt) {
