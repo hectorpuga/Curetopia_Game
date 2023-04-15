@@ -9,7 +9,6 @@ class Fish extends PositionComponent
   @override
   void onLoad() {
     add(RectangleHitbox(isSolid: true, priority: 4, anchor: Anchor.topLeft));
-
   }
 
   @override

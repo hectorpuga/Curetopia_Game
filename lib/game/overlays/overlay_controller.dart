@@ -6,6 +6,7 @@ import '../../provider/invetario.dart';
 import 'audio_overlay.dart';
 
 class OverlayController extends StatelessWidget {
+  static const String name = "OverlayController";
   final MyGame game;
   const OverlayController({Key? key, required this.game}) : super(key: key);
 
@@ -15,8 +16,7 @@ class OverlayController extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-         AudioOverlay(game),
-        
+        AudioOverlay(game),
       ],
     );
   }

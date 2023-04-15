@@ -15,13 +15,15 @@ void main() {
   Flame.device.fullScreen();
   // Implementa rotación de pantalla completa
   Flame.device.setLandscape();
-      // Creación de estados del juego
+  // Creación de estados del juego
 
   runApp(const AppState());
 }
 
 class AppState extends StatelessWidget {
-  const AppState({super.key,});
+  const AppState({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,37 +34,36 @@ class AppState extends StatelessWidget {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key,});
+  const MyApp({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-     final gameProvider = context.read<GameProvider>();
+    final gameProvider = context.read<GameProvider>();
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: 
-         
-           Scaffold(
-              body: GameWidget(
-            loadingBuilder: (context) => const Center(
-                child: SizedBox(
-              width: 200,
-              // Creación de barra de carga inicial
-              child: LinearProgressIndicator(
-                color: Colors.white,
-                minHeight: 3,
-                backgroundColor: Colors.black,
-              ),
-            )),
-            game: MyGame(gameProvider),
-            overlayBuilderMap: {
-              'ButtonController': (_, MyGame game) => OverlayController(
-                    game: game,
-                  ),
-              'Menu': (_, MyGame game) => MainMenu(game),
-              InventaryBase.id: (_, MyGame game) => InventaryBase(game)
-            },
-            initialActiveOverlays: const ["ButtonController"],
-          ))
-        );
+        home: Scaffold(
+            body: GameWidget(
+          loadingBuilder: (context) => const Center(
+              child: SizedBox(
+            width: 200,
+            // Creación de barra de carga inicial
+            child: LinearProgressIndicator(
+              color: Colors.white,
+              minHeight: 3,
+              backgroundColor: Colors.black,
+            ),
+          )),
+          game: MyGame(gameProvider),
+          overlayBuilderMap: {
+            OverlayController.name: (_, MyGame game) => OverlayController(
+                  game: game,
+                ),
+            MainMenu.name: (_, MyGame game) => MainMenu(game),
+            InventaryBase.name: (_, MyGame game) => InventaryBase(game)
+          },
+          initialActiveOverlays: const [OverlayController.name],
+        )));
   }
 }

@@ -9,7 +9,7 @@ import '../articles/fish_article.dart';
 import '../articles/obstacle_component.dart';
 
 class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
-    with CollisionCallbacks ,HasGameRef<MyGame>{
+    with CollisionCallbacks, HasGameRef<MyGame> {
   bool isFish = false;
   final List collisionDirection = [];
   double _characterSpeed = 100;
@@ -26,15 +26,17 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     position = Vector2(529, 450);
     add(RectangleHitbox(size: Vector2(42, 44), position: Vector2(12, 12)));
   }
+
   @override
   void onCollisionStart(
     Set<Vector2> intersectionPoints,
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
-    if (joystick.direction != JoystickDirection.idle && other is! MedicinaComponent ) {
-    collisionDirection.add(joystick.direction);}
-    
+    if (joystick.direction != JoystickDirection.idle &&
+        other is! MedicinaComponent) {
+      collisionDirection.add(joystick.direction);
+    }
   }
 
   @override

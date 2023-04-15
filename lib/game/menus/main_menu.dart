@@ -6,7 +6,7 @@ import 'components/menu_base.dart';
 
 // ignore: must_be_immutable
 class MainMenu extends StatelessWidget {
-  static const id = "MainMenu";
+  static const name = "MainMenu";
   MyGame gameRef;
   MainMenu(this.gameRef, {super.key});
   @override

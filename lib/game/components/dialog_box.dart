@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:flame/components.dart';
-
 import '../my_game.dart';
 
 class DialogBox extends TextBoxComponent {
