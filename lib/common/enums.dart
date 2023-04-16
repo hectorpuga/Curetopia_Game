@@ -9,3 +9,5 @@ enum AnimationPlayerStates {
   fishRight,
   fishDown
 }
+
+enum AnimationCultivosStates { plantasion, crecimiento, listo }

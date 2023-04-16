@@ -5,8 +5,6 @@ import 'package:flame/components.dart';
 import 'package:game/game/articles/medicina.dart';
 import 'package:game/game/my_game.dart';
 import '../../common/enums.dart';
-import '../articles/fish_article.dart';
-import '../articles/obstacle_component.dart';
 
 class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     with CollisionCallbacks, HasGameRef<MyGame> {
@@ -23,7 +21,7 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
   Future<void>? onLoad() async {
     super.onLoad();
     debugMode = true;
-    position = Vector2(529, 450);
+    position = Vector2(450, 2300);
     add(RectangleHitbox(size: Vector2(42, 44), position: Vector2(12, 12)));
   }
 
@@ -33,6 +31,7 @@ class PlayerGame extends SpriteAnimationGroupComponent<AnimationPlayerStates>
     PositionComponent other,
   ) {
     super.onCollisionStart(intersectionPoints, other);
+
     if (joystick.direction != JoystickDirection.idle &&
         other is! MedicinaComponent) {
       collisionDirection.add(joystick.direction);
