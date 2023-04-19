@@ -39,7 +39,7 @@ class GameProvider extends ChangeNotifier {
   setCambioValor(Map<String, List<MedicinaComponent>> dato, int i) {
     _medicinas[_medicinas.indexOf(dato)] = null;
     _medicinas[i] = dato;
-    _id--;
+    if (id > 0) _id--;
     print("................................................");
     print(_medicinas);
     notifyListeners();
